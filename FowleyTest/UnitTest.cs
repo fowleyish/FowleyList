@@ -206,5 +206,95 @@ namespace FowleyTest
             // act
             testList.Remove(1);
         }
+
+
+
+        //  +====================+
+        //  |  ToString() tests  |
+        //  +====================+
+
+
+        [TestMethod]
+        public void ToString_CompressListToSingleString_ReturnString()
+        {
+            // arrange
+            FowleyList<int> testList = new FowleyList<int>();
+            int firstItem = 94;
+            int secondItem = 20;
+            int thirdItem = 42;
+            string expected = "942042";
+            string actual;
+            // act
+            testList.Add(firstItem);
+            testList.Add(secondItem);
+            testList.Add(thirdItem);
+            actual = testList.ToString();
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_CompressListToStringWithDelim_ReturnStringWithDelim()
+        {
+            // arrange
+            FowleyList<int> testList = new FowleyList<int>();
+            int firstItem = 94;
+            int secondItem = 20;
+            int thirdItem = 42;
+            string expected = "94, 20, 42";
+            string actual;
+            // act
+            testList.Add(firstItem);
+            testList.Add(secondItem);
+            testList.Add(thirdItem);
+            actual = testList.ToString(", ");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_CompressStringListToSingleStringWithDelim_ReturnStringWithDelim()
+        {
+            // arrange
+            FowleyList<string> testList = new FowleyList<string>();
+            string firstItem = "buh";
+            string secondItem = "BUH";
+            string thirdItem = "buh buh";
+            string expected = "buh BUH buh buh";
+            string actual;
+            // act
+            testList.Add(firstItem);
+            testList.Add(secondItem);
+            testList.Add(thirdItem);
+            actual = testList.ToString(" ");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_CompressEmptyListToString_ReturnNothing()
+        {
+            // arrange 
+            FowleyList<int> testList = new FowleyList<int>();
+            string expected = "";
+            string actual;
+            // act
+            actual = testList.ToString();
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_CompressEmptyListToStringWithDelimiter_ReturnNothing()
+        {
+            // arrange 
+            FowleyList<int> testList = new FowleyList<int>();
+            string expected = "";
+            string actual;
+            // act
+            actual = testList.ToString("WAH");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

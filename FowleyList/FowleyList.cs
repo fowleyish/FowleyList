@@ -101,5 +101,30 @@ namespace FowleyList
             }
             return exists;
         }
+
+        // Note on the following method:
+        // When passing an argument into this ToString(),
+        // use of the "override" keyword is forbidden.
+        // Therefore, this is a unique method rather than
+        // an override of the native ToString() Array method.
+        public string ToString(string delim = "")
+        {
+            string str = "";
+            for (int i = 0; i < count; i++)
+            {
+                str += items[i];
+                if (i != count - 1)
+                {
+                    str += delim;
+                }
+            }
+            return str;
+        }
+
+
+
+
+
+
     }
 }

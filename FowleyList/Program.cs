@@ -18,10 +18,7 @@ namespace FowleyList
             fowleyList.Add(100);
             fowleyList.Add(101);
             fowleyList.Remove(4);
-            foreach (int item in fowleyList.Items)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine(fowleyList.ToString());
         }
     }
 }
