@@ -6,7 +6,11 @@ namespace FowleyTest
     [TestClass]
     public class UnitTest
     {
-        // Add() tests
+        //  +====================+
+        //  |     Add() tests    |
+        //  +====================+
+
+
 
         [TestMethod]
         public void Add_AddingOneValueToEmptyFowleyList_AddedValueGoesToIndexZero()
@@ -18,7 +22,7 @@ namespace FowleyTest
             int actual;
             // act
             testList.Add(itemToAdd);
-            actual = testList.Items[0];
+            actual = testList[0];
             // assert
             Assert.AreEqual(expected, actual);
         }
@@ -53,7 +57,7 @@ namespace FowleyTest
             testList.Add(firstItem);
             testList.Add(secondItem);
             testList.Add(thirdItem);
-            actual = testList.Items[2];
+            actual = testList[2];
             // assert
             Assert.AreEqual(expected, actual);
         }
@@ -78,17 +82,16 @@ namespace FowleyTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.IndexOutOfRangeException))]
-        public void Add_AddItemsOverFowleyListCapacity_ReturnError()
+        public void Add_IncreaseArrayCapacity_ReturnIndexValueAfterIncrement()
         {
             // arrange
             FowleyList<int> testList = new FowleyList<int>();
             int firstItem = 94;
             int secondItem = 20;
             int thirdItem = 42;
-            int fourthItem = 95;
-            int fifthItem = 100;
-            int expected = 4;
+            int fourthItem = 56;
+            int fifthItem = 90;
+            int expected = 20;
             int actual;
             // act
             testList.Add(firstItem);
@@ -96,13 +99,19 @@ namespace FowleyTest
             testList.Add(thirdItem);
             testList.Add(fourthItem);
             testList.Add(fifthItem);
-            actual = testList.Count;
+            actual = testList[1];
             // assert
             Assert.AreEqual(expected, actual);
         }
 
 
-        // Remove() tests
+
+        //  +====================+
+        //  |   Remove() tests   |
+        //  +====================+
+
+
+
 
         [TestMethod]
         public void Remove_RemoveValueFromList_ReturnListCount()
@@ -190,8 +199,7 @@ namespace FowleyTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(System.IndexOutOfRangeException))]
-        public void Remove_RemoveItemFromEmptyList_ReturnIndexOutOfRangeException()
+        public void Remove_RemoveItemFromEmptyList_DoNothing()
         {
             // arrange
             FowleyList<int> testList = new FowleyList<int>();
