@@ -121,9 +121,24 @@ namespace FowleyList
             return str;
         }
 
+        public static FowleyList<T> operator +(FowleyList<T> l1, FowleyList<T> l2)
+        {
+            FowleyList<T> newArray = new FowleyList<T>();
+            for (int i = 0; i < l1.count; i++)
+            {
+                newArray.Add(l1[i]);
+            }
+            for (int i = 0; i < l2.count; i++)
+            {
+                newArray.Add(l2[i]);
+            }
+            return newArray;
+        }
 
+        //public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
+        //{
 
-
+        //}
 
 
     }
