@@ -386,5 +386,129 @@ namespace FowleyTest
             Assert.AreEqual(expected, actual);
         }
 
+
+
+        //  +============================+
+        //  |  operator- overload tests  |
+        //  +============================+
+
+
+
+        [TestMethod]
+        public void Minus_SubtractOneListFromAnotherList_ReturnMinimizedList()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(3);
+            list2.Add(5);
+            list2.Add(6);
+            string expected = "1,2";
+            string actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.ToString(",");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractOneListFromAnotherListWithNoMatches_ReturnOriginalList()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(4);
+            list2.Add(5);
+            list2.Add(6);
+            string expected = "1,2,3";
+            string actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.ToString(",");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractAnEmptyListFromAnotherList_ReturnOriginalList()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            string expected = "1,2,3";
+            string actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.ToString(",");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractOneListFromAnEmptyList_ReturnCount0()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list2.Add(4);
+            list2.Add(5);
+            list2.Add(6);
+            int expected = 0;
+            int actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractOneListFromItself_ReturnEmptyList()
+        {
+            // arrange
+            FowleyList<string> list1 = new FowleyList<string>();
+            FowleyList<string> list2;
+            list1.Add("no");
+            list1.Add("no");
+            list1.Add("never");
+            int expected = 0;
+            int actual;
+            // act
+            list2 = list1 - list1;
+            actual = list2.Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractTwoEmptyLists_ReturnEmptyList()
+        {
+            // arrange
+            FowleyList<string> list1 = new FowleyList<string>();
+            FowleyList<string> list2 = new FowleyList<string>();
+            FowleyList<string> list3;
+            int expected = 0;
+            int actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

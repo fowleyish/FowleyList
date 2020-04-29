@@ -135,10 +135,10 @@ namespace FowleyList
             return newArray;
         }
 
-        //public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
-        //{
+        public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
+        {
 
-        //}
+        }
 
 
     }
