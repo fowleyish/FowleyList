@@ -510,5 +510,49 @@ namespace FowleyTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Minus_SubtractOneListFromAnotherListWithRepeatingValues_ReturnMinimizedList()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(2);
+            list2.Add(2);
+            list2.Add(5);
+            list2.Add(1);
+            string expected = "2";
+            string actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.ToString(",");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Minus_SubtractOneListWithRepeatingValuesFromAnotherList_ReturnMinimizedList()
+        {
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(3);
+            list2.Add(3);
+            list2.Add(2);
+            string expected = "1,2";
+            string actual;
+            // act
+            list3 = list1 - list2;
+            actual = list3.ToString(",");
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

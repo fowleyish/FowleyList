@@ -137,7 +137,14 @@ namespace FowleyList
 
         public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
         {
-
+            FowleyList<T> newArray = new FowleyList<T>();
+            for (int i = 0; i < l1.Count; i++)
+            {
+                if (l2.Exists(l1[i]))
+                {
+                    l1.Remove(l1[i]);
+                }
+            }
         }
 
 
