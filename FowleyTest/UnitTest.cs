@@ -215,6 +215,7 @@ namespace FowleyTest
         //  +====================+
 
 
+
         [TestMethod]
         public void ToString_CompressListToSingleString_ReturnString()
         {
@@ -304,50 +305,85 @@ namespace FowleyTest
         //  |  operator+ overload tests  |
         //  +============================+
 
+
+
         [TestMethod]
         public void Plus_AddTwoLists_ReturnNewList()
         {
             // arrange
             FowleyList<int> list1 = new FowleyList<int>();
             FowleyList<int> list2 = new FowleyList<int>();
-            FowleyList<int> list3 = new FowleyList<int>();
+            FowleyList<int> list3;
             list1.Add(1);
             list1.Add(2);
             list1.Add(3);
             list2.Add(4);
             list2.Add(5);
             list2.Add(6);
-            int expected = 5;
+            int expected = 6;
             int actual;
             // act
             list3 = list1 + list2;
+            actual = list3.Count;
             // assert
-
+            Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(System.Exception))] // Update with more precise exception
-        public void Plus_AddTwoListsOfDifferentTypes_ThrowException()
+        [TestMethod] 
+        public void Plus_AddTwoLists_ReturnValueAtIndex3()
         {
             // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(4);
+            list2.Add(5);
+            list2.Add(6);
+            int expected = 4;
+            int actual;
             // act
+            list3 = list1 + list2;
+            actual = list3[3];
             // assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Plus_AddEmptyListAndListWithValues_ReturnNewListIdenticalToFirstList()
         {
             // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            int expected = 3;
+            int actual;
             // act
+            list3 = list1 + list2;
+            actual = list3.Count;
             // assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Plus_AddTwoEmptyLists_ReturnNothing()
         {
             // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            int expected = 0;
+            int actual;
             // act
+            list3 = list1 + list2;
+            actual = list3.Count;
             // assert
+            Assert.AreEqual(expected, actual);
         }
 
     }
