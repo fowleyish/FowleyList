@@ -17,8 +17,26 @@ namespace FowleyList
             fowleyList.Add(43);
             fowleyList.Add(100);
             fowleyList.Add(101);
-            fowleyList.Remove(4);
-            Console.WriteLine(fowleyList.ToString());
+            Console.WriteLine(fowleyList.ToString(", "));
+
+            FowleyList<int> killMe = new FowleyList<int>();
+            killMe.Add(22);
+            killMe.Add(22);
+            killMe.Add(13);
+            killMe.Add(100);
+            Console.WriteLine(killMe.ToString(", "));
+
+            FowleyList<int> added = fowleyList + killMe;
+            Console.WriteLine("===ADDED===");
+            Console.WriteLine(added.ToString(", "));
+
+            FowleyList<int> subtracted = fowleyList - killMe;
+            Console.WriteLine("===SUBTRACTED===");
+            Console.WriteLine(subtracted.ToString(", "));
+
+            Console.WriteLine(subtracted[12]);
+
+            List<int> blah = new List<int>();
         }
     }
 }

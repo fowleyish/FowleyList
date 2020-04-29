@@ -477,24 +477,6 @@ namespace FowleyTest
         }
 
         [TestMethod]
-        public void Minus_SubtractOneListFromItself_ReturnEmptyList()
-        {
-            // arrange
-            FowleyList<string> list1 = new FowleyList<string>();
-            FowleyList<string> list2;
-            list1.Add("no");
-            list1.Add("no");
-            list1.Add("never");
-            int expected = 0;
-            int actual;
-            // act
-            list2 = list1 - list1;
-            actual = list2.Count;
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Minus_SubtractTwoEmptyLists_ReturnEmptyList()
         {
             // arrange
@@ -545,13 +527,40 @@ namespace FowleyTest
             list2.Add(3);
             list2.Add(3);
             list2.Add(2);
-            string expected = "1,2";
+            string expected = "1";
             string actual;
             // act
             list3 = list1 - list2;
-            actual = list3.ToString(",");
+            actual = list3.ToString("");
             // assert
             Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+        //  +===============+
+        //  |  Zip() tests  |
+        //  +===============+
+
+
+
+        [TestMethod]
+        public void Zip_ZipTwoEvenSizedArraysTogether_ReturnZippedArray()
+        {
+
+        }
+
+        [TestMethod]
+        public void Zip_ZipTwoDifferentSizedArraysTogether_ReturnZippedArray()
+        {
+
+        }
+
+        [TestMethod]
+        public void Zip_ZipBlankArrayWithLongArray_ReturnZippedArray()
+        {
+
         }
 
     }

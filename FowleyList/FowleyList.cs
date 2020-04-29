@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq.Expressions;
 using System.Text;
 
 namespace FowleyList
 {
-    public class FowleyList<T>
+    public class FowleyList<T> : IEnumerable
     {
         // Member vars
         private T[] items;
@@ -16,7 +17,7 @@ namespace FowleyList
         }
         public T this[int index]
         {
-            get => items[index];
+            get => items[index]; // if index <= count; return items[index]
             set => items[index] = value;
         }
         private int count;
@@ -38,6 +39,14 @@ namespace FowleyList
             items = new T[4];
             count = 0;
             capacity = 4;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                yield return items[i];
+            }
         }
 
         // Methods
@@ -70,12 +79,12 @@ namespace FowleyList
             {
                 for (int i = 0; i < count; i++)
                 {
-                    if (items[i].Equals(item))
-                    {
+                    if (items[i].Equals(item)) // PROBLEM: continues to grab items after whatever
+                    {                          // temparray with what I want to keep?
                         int currentIndexValue = i;
-                        for (int j = currentIndexValue; j < count; j++)
+                        for (int j = currentIndexValue; j < count -1; j++)
                         {
-                            items[j] = items[j + 1];
+                            items[j] = items[j + 1]; 
                         }
                     }
                 }
@@ -137,14 +146,21 @@ namespace FowleyList
 
         public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
         {
-            FowleyList<T> newArray = new FowleyList<T>();
+            FowleyList<T> itemsToRemove = new FowleyList<T>();
+            FowleyList<T> returnArray = l1;
             for (int i = 0; i < l1.Count; i++)
             {
                 if (l2.Exists(l1[i]))
                 {
-                    l1.Remove(l1[i]);
+                    itemsToRemove.Add(l1[i]);
+                    l2.Remove(l1[i]);
                 }
             }
+            foreach (T x in itemsToRemove)
+            {
+                returnArray.Remove(x);
+            }
+            return returnArray;
         }
 
 
