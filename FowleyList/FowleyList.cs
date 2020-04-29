@@ -3,22 +3,33 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq.Expressions;
 using System.Text;
+using System.IO;
 
 namespace FowleyList
 {
-    public class FowleyList<T> : IEnumerable
+    public class FowleyList<T> : IEnumerable // set constrictors for accepting only lists of certain types (no objects, etc) for sorting
     {
         // Member vars
         private T[] items;
-        public T[] Items 
+        public T[] Items
         {
             get => items;
             set => items = value;
         }
         public T this[int index]
         {
-            get => items[index]; // if index <= count; return items[index]
-            set => items[index] = value;
+            get
+            {
+                if (index <= count)
+                {
+                    return items[index];
+                }
+                return ;
+            }
+            set
+            {
+                items[index] = value;
+            }
         }
         private int count;
         public int Count 

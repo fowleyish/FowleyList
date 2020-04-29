@@ -35,8 +35,6 @@ namespace FowleyList
             Console.WriteLine(subtracted.ToString(", "));
 
             Console.WriteLine(subtracted[12]);
-
-            List<int> blah = new List<int>();
         }
     }
 }
