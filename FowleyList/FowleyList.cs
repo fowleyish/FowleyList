@@ -55,6 +55,7 @@ namespace FowleyList
             capacity = 4;
         }
 
+        // Allows for list enumeration
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < count; i++)
@@ -64,59 +65,63 @@ namespace FowleyList
         }
 
         // Methods
+
+        // Increases the capacity of the array when the count threshold is reached
         public void IncreaseCapacity()
         {
-            // copy values to new list
-            capacity *= 2;
+            capacity *= 2; // Double capacity
             T[] oldList = items;
             items = new T[capacity];
             for (int i = 0; i < count; i++)
             {
-                items[i] = oldList[i];
+                items[i] = oldList[i]; // Assigns all values from the original array to the new increased-capacity array
             }
         }
 
+        // Adds an item to a list
         public void Add(T item)
         {
-            if ( count == capacity )
+            if ( count == capacity ) // Increases capacity if the count and capacity are the same; this resolves indexing issues
             {
                 IncreaseCapacity();
             }
-            count++;
-            int maxIndex = count - 1;
-            items[maxIndex] = item;
+            count++; // Increment count
+            int maxIndex = count - 1; // Get the last index of the array
+            items[maxIndex] = item; // ...and assign the item value to that index
         }
 
+        // Removes an item from a list. See Remove() documentation in the repo root README.md
         public bool Remove(T item)
         {
-            if (Exists(item))
+            if (Exists(item)) // If the item exists...
             {
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < count; i++) // ...loop through this array...
                 {
-                    if (items[i].Equals(item)) // PROBLEM: continues to grab items after whatever
-                    {                          // temparray with what I want to keep?
-                        int currentIndexValue = i;
-                        for (int j = currentIndexValue; j < count -1; j++)
+                    if (items[i].Equals(item)) // ...and where they match...
+                    {                          
+                        int currentIndexValue = i; // 1. Record this index value
+                        for (int j = currentIndexValue; j < count -1; j++) // 2. Loop through the remaining array items
                         {
-                            items[j] = items[j + 1]; 
+                            items[j] = items[j + 1]; // 3. And push the items to the last index, thus overriding the identified match value
                         }
                     }
                 }
-                count--;
+                count--; // Decrement count
                 return true;
             }
-            else
+            else // If there is no match, then this returns false and nothing happens to the array
             {
                 return false;
             }
         }
 
+        // Checks to see if a specified item exists in a list
         public bool Exists(T item)
         {
-            bool exists = false;
+            bool exists = false; // init return
             for (int i = 0; i < capacity; i++)
             {
-                if (items[i].Equals(item))
+                if (items[i].Equals(item)) // If this value matches the passed value, return true
                 {
                     exists = true;
                     break;
@@ -130,13 +135,13 @@ namespace FowleyList
         // use of the "override" keyword is forbidden.
         // Therefore, this is a unique method rather than
         // an override of the native ToString() Array method.
-        public string ToString(string delim = "")
+        public string ToString(string delim = "") // Optional delimiter when invoking method
         {
             string str = "";
             for (int i = 0; i < count; i++)
             {
                 str += items[i];
-                if (i != count - 1)
+                if (i != count - 1) // IF statement prevents writing delimiter after last index
                 {
                     str += delim;
                 }
@@ -144,61 +149,66 @@ namespace FowleyList
             return str;
         }
 
+        // + override
         public static FowleyList<T> operator +(FowleyList<T> l1, FowleyList<T> l2)
         {
-            FowleyList<T> newArray = new FowleyList<T>();
-            for (int i = 0; i < l1.count; i++)
+            FowleyList<T> newArray = new FowleyList<T>(); // newArray to return
+            for (int i = 0; i < l1.count; i++) // Add all items from the first list
             {
                 newArray.Add(l1[i]);
             }
-            for (int i = 0; i < l2.count; i++)
+            for (int i = 0; i < l2.count; i++) // Add all items from the second list
             {
                 newArray.Add(l2[i]);
             }
             return newArray;
         }
 
+        // - override
         public static FowleyList<T> operator -(FowleyList<T> l1, FowleyList<T> l2)
         {
-            FowleyList<T> itemsToRemove = new FowleyList<T>();
-            FowleyList<T> returnArray = l1;
-            for (int i = 0; i < l1.Count; i++)
+            FowleyList<T> itemsToRemove = new FowleyList<T>(); // Create new ref list for removal of items
+            FowleyList<T> returnArray = l1; // Create new ref list and populate values with l1, which prevents accidentally changing l1
+            for (int i = 0; i < l1.Count; i++) // Loop through l1...
             {
                 if (l2.Exists(l1[i]))
                 {
-                    itemsToRemove.Add(l1[i]);
+                    itemsToRemove.Add(l1[i]); 
                     l2.Remove(l1[i]);
                 }
-            }
+            } // ...and remove whatever items match between the two lists
             foreach (T x in itemsToRemove)
             {
-                returnArray.Remove(x);
+                returnArray.Remove(x); // from the temp itemsToRemove list, Remove() all items from the returnArray
             }
             return returnArray;
         }
 
+        // "Zips" two lists together
         public FowleyList<T> Zip(FowleyList<T> zipper)
         {
-            FowleyList<T> zippedList = new FowleyList<T>();
-            FowleyList<T> biggestList;
+            FowleyList<T> zippedList = new FowleyList<T>(); // Create new list
+            FowleyList<T> biggestList; // Create new list reference for the list with the highest count
+            // Determine which of the two lists has the highest count
             if (count > zipper.count)
             {
-                biggestList = this;
+                biggestList = this; 
             }
             else
             {
                 biggestList = zipper;
             }
+            // Get highest and lowest counts of lists
             int biggestCount = Math.Max(count, zipper.count);
             int smallestCount = Math.Min(count, zipper.count);
-            for (int i = 0; i < biggestCount; i++)
+            for (int i = 0; i < biggestCount; i++) // Set max loop iteration using the count of the biggest list
             {
                 if (i < smallestCount)
                 {
                     zippedList.Add(this[i]);
                     zippedList.Add(zipper[i]);
                 }
-                else
+                else // If the count has exceeded the smaller list, only add values from the bigger list
                 {
                     zippedList.Add(biggestList[i]);
                 }
@@ -206,9 +216,9 @@ namespace FowleyList
             return zippedList;
         }
 
-        public FowleyList<T> Sort()
-        {
+        //public FowleyList<T> Sort()
+        //{
 
-        }
+        //}
     }
 }
