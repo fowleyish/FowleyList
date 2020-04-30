@@ -618,81 +618,81 @@ namespace FowleyTest
 
 
 
-        [TestMethod]
-        public void Sort_SortIntArray_ReturnSortedArray()
-        {
-            // arrange
-            FowleyList<int> list1 = new FowleyList<int>();
-            FowleyList<int> list2;
-            list1.Add(1);
-            list1.Add(3);
-            list1.Add(5);
-            list1.Add(2);
-            list1.Add(22);
-            list1.Add(13);
-            list1.Add(4);
-            string expected = "123451322";
-            string actual;
-            list2 = list1.Sort();
-            actual = list2.ToString();
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestMethod]
+        //public void Sort_SortIntArray_ReturnSortedArray()
+        //{
+        //    // arrange
+        //    FowleyList<int> list1 = new FowleyList<int>();
+        //    FowleyList<int> list2;
+        //    list1.Add(1);
+        //    list1.Add(3);
+        //    list1.Add(5);
+        //    list1.Add(2);
+        //    list1.Add(22);
+        //    list1.Add(13);
+        //    list1.Add(4);
+        //    string expected = "123451322";
+        //    string actual;
+        //    list2 = list1.Sort();
+        //    actual = list2.ToString();
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
 
-        [TestMethod]
-        public void Sort_SortCharArray_ReturnSortedArray()
-        {
-            // arrange
-            FowleyList<int> list1 = new FowleyList<int>();
-            FowleyList<int> list2;
-            list1.Add('a');
-            list1.Add('d');
-            list1.Add('x');
-            list1.Add('e');
-            list1.Add('p');
-            list1.Add('g');
-            list1.Add('b');
-            string expected = "abdegpx";
-            string actual;
-            list2 = list1.Sort();
-            actual = list2.ToString();
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestMethod]
+        //public void Sort_SortCharArray_ReturnSortedArray()
+        //{
+        //    // arrange
+        //    FowleyList<int> list1 = new FowleyList<int>();
+        //    FowleyList<int> list2;
+        //    list1.Add('a');
+        //    list1.Add('d');
+        //    list1.Add('x');
+        //    list1.Add('e');
+        //    list1.Add('p');
+        //    list1.Add('g');
+        //    list1.Add('b');
+        //    string expected = "abdegpx";
+        //    string actual;
+        //    list2 = list1.Sort();
+        //    actual = list2.ToString();
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
 
-        [TestMethod]
-        public void Sort_SortArrayWithRepeatingValues_ReturnSortedArray()
-        {
-            // arrange
-            FowleyList<int> list1 = new FowleyList<int>();
-            FowleyList<int> list2;
-            list1.Add(1);
-            list1.Add(1);
-            list1.Add(1);
-            list1.Add(2);
-            list1.Add(4);
-            list1.Add(4);
-            list1.Add(3);
-            string expected = "1112443";
-            string actual;
-            list2 = list1.Sort();
-            actual = list2.ToString();
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestMethod]
+        //public void Sort_SortArrayWithRepeatingValues_ReturnSortedArray()
+        //{
+        //    // arrange
+        //    FowleyList<int> list1 = new FowleyList<int>();
+        //    FowleyList<int> list2;
+        //    list1.Add(1);
+        //    list1.Add(1);
+        //    list1.Add(1);
+        //    list1.Add(2);
+        //    list1.Add(4);
+        //    list1.Add(4);
+        //    list1.Add(3);
+        //    string expected = "1112443";
+        //    string actual;
+        //    list2 = list1.Sort();
+        //    actual = list2.ToString();
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
 
-        [TestMethod]
-        public void Sort_SortEmptyArray_ReturnNothing()
-        {
-            // arrange
-            FowleyList<int> list1 = new FowleyList<int>();
-            FowleyList<int> list2;
-            string expected = "";
-            string actual;
-            list2 = list1.Sort();
-            actual = list2.ToString();
-            // assert
-            Assert.AreEqual(expected, actual);
-        }
+        //[TestMethod]
+        //public void Sort_SortEmptyArray_ReturnNothing()
+        //{
+        //    // arrange
+        //    FowleyList<int> list1 = new FowleyList<int>();
+        //    FowleyList<int> list2;
+        //    string expected = "";
+        //    string actual;
+        //    list2 = list1.Sort();
+        //    actual = list2.ToString();
+        //    // assert
+        //    Assert.AreEqual(expected, actual);
+        //}
     }
 }
