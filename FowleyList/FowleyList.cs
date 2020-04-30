@@ -177,6 +177,11 @@ namespace FowleyList
             return returnArray;
         }
 
+        //public FowleyList<T> Zip(FowleyList<T> zipper)
+        //{
+
+        //}
+
 
     }
 }

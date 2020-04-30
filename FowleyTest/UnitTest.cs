@@ -548,7 +548,22 @@ namespace FowleyTest
         [TestMethod]
         public void Zip_ZipTwoEvenSizedArraysTogether_ReturnZippedArray()
         {
-
+            // arrange
+            FowleyList<int> list1 = new FowleyList<int>();
+            FowleyList<int> list2 = new FowleyList<int>();
+            FowleyList<int> list3;
+            list1.Add(1);
+            list1.Add(3);
+            list1.Add(5);
+            list2.Add(2);
+            list2.Add(4);
+            list2.Add(6);
+            string expected = "1, 2, 3, 4, 5";
+            string actual;
+            list3 = list1.Zip(list2);
+            actual = list3.ToString(", ");
+            // assert
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
