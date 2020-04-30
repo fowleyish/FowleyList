@@ -34,7 +34,6 @@ namespace FowleyList
             Console.WriteLine("===SUBTRACTED===");
             Console.WriteLine(subtracted.ToString(", "));
 
-            Console.WriteLine(subtracted[12]);
         }
     }
 }

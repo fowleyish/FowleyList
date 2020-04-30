@@ -24,7 +24,10 @@ namespace FowleyList
                 {
                     return items[index];
                 }
-                return ;
+                else
+                {
+                    throw new IndexOutOfRangeException();
+                }
             }
             set
             {
