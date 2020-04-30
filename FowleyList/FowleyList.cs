@@ -179,7 +179,31 @@ namespace FowleyList
 
         public FowleyList<T> Zip(FowleyList<T> zipper)
         {
-
+            FowleyList<T> zippedList = new FowleyList<T>();
+            FowleyList<T> biggestList;
+            if (count > zipper.count)
+            {
+                biggestList = this;
+            }
+            else
+            {
+                biggestList = zipper;
+            }
+            int biggestCount = Math.Max(count, zipper.count);
+            int smallestCount = Math.Min(count, zipper.count);
+            for (int i = 0; i < biggestCount; i++)
+            {
+                if (i < smallestCount)
+                {
+                    zippedList.Add(this[i]);
+                    zippedList.Add(zipper[i]);
+                }
+                else
+                {
+                    zippedList.Add(biggestList[i]);
+                }
+            }
+            return zippedList;
         }
 
         public FowleyList<T> Sort()

@@ -558,7 +558,7 @@ namespace FowleyTest
             list2.Add(2);
             list2.Add(4);
             list2.Add(6);
-            string expected = "1, 2, 3, 4, 5";
+            string expected = "1, 2, 3, 4, 5, 6";
             string actual;
             list3 = list1.Zip(list2);
             actual = list3.ToString(", ");
