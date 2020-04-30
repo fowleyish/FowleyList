@@ -182,6 +182,9 @@ namespace FowleyList
 
         }
 
+        public FowleyList<T> Sort()
+        {
 
+        }
     }
 }
